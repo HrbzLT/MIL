@@ -84,6 +84,26 @@
             margin-bottom: 0.6rem;
         }
 
+        button {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 1rem;
+        }
+
+        button:hover {
+            background-color: #217dbb;
+        }
+
+        #result {
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+
         footer {
             text-align: center;
             padding: 1.5rem;
@@ -98,8 +118,8 @@
 <header>
     <h1>Media and Information Literacy – Lesson 5</h1>
     <p>
-        In this lesson, you will learn how to find reliable information from different
-        sources and how to decide which sources you can trust.
+        Learn how to find reliable information and decide which sources you can trust
+        in everyday media.
     </p>
 </header>
 
@@ -109,16 +129,15 @@
         <h2>📌 Sourcing Indigenous Media</h2>
         <p>
             Indigenous media comes from local or native communities. This information is
-            often shared through stories, traditions, music, or community activities.
-            It helps preserve culture and history.
+            often shared through stories, traditions, music, and community practices.
         </p>
 
         <div class="tip">
-            <strong>Why is this important?</strong>
+            <strong>Why this matters:</strong>
             <ul>
-                <li>Information comes directly from the community, making it reliable.</li>
-                <li>It helps people in rural areas learn and stay informed.</li>
-                <li>In the Philippines, it strengthens cultural identity and pride.</li>
+                <li>Information comes directly from the community.</li>
+                <li>It helps preserve culture and traditions.</li>
+                <li>It supports cultural pride, especially in the Philippines.</li>
             </ul>
         </div>
     </section>
@@ -126,16 +145,16 @@
     <section class="lesson">
         <h2>📚 Sourcing in Libraries and Print Materials</h2>
         <p>
-            Libraries provide books, newspapers, magazines, and other printed materials
-            that are carefully selected and organized for learning and research.
+            Libraries provide books, newspapers, and magazines that are reviewed and
+            organized for research and learning.
         </p>
 
         <div class="tip">
             <strong>Remember:</strong>
             <ul>
-                <li>Library materials are reviewed before being made available.</li>
-                <li>Librarians can help you check if information is accurate and trustworthy.</li>
-                <li>Using library sources improves your research skills.</li>
+                <li>Library sources are usually reliable.</li>
+                <li>Librarians help check accuracy and credibility.</li>
+                <li>Using library sources improves research skills.</li>
             </ul>
         </div>
     </section>
@@ -143,14 +162,14 @@
     <section class="lesson">
         <h2>🌐 Sourcing on the Internet and Online Resources</h2>
         <p>
-            The internet gives access to a large amount of information, but not everything
-            online is true. You must learn how to check if a source is reliable.
+            The internet contains useful information, but not everything online is true.
+            Students must evaluate online sources carefully.
         </p>
 
         <div class="tip">
-            <strong>Tips for using online sources:</strong>
+            <strong>Online safety tips:</strong>
             <ul>
-                <li>Check who wrote the information and when it was published.</li>
+                <li>Check the author and publication date.</li>
                 <li>Use trusted websites and databases.</li>
                 <li>Compare information from different sources.</li>
             </ul>
@@ -160,12 +179,12 @@
     <section class="lesson">
         <h2>📱 Sourcing from Other Platforms</h2>
         <p>
-            Information can also come from newspapers, magazines, social media,
-            community media, and encyclopedias. Each platform should be evaluated carefully.
+            Information also comes from newspapers, magazines, social media,
+            and community media.
         </p>
 
         <div class="tip">
-            <strong>Always ask yourself:</strong>
+            <strong>Ask yourself:</strong>
             <ul>
                 <li>Is the information accurate?</li>
                 <li>Who created it and why?</li>
@@ -174,11 +193,75 @@
         </div>
     </section>
 
+    <!-- QUIZ SECTION -->
+    <section class="lesson">
+        <h2>📝 Quick Quiz: Test Your Understanding</h2>
+        <p>Choose the best answer for each question.</p>
+
+        <form id="quizForm">
+
+            <p><strong>1. What makes indigenous media reliable?</strong></p>
+            <label><input type="radio" name="q1" value="a"> It is popular online</label><br>
+            <label><input type="radio" name="q1" value="b"> It comes directly from the community</label><br>
+            <label><input type="radio" name="q1" value="c"> It is always written</label>
+
+            <p><strong>2. Which source is usually reviewed and organized?</strong></p>
+            <label><input type="radio" name="q2" value="a"> Library</label><br>
+            <label><input type="radio" name="q2" value="b"> Random blog</label><br>
+            <label><input type="radio" name="q2" value="c"> Anonymous website</label>
+
+            <p><strong>3. What should you check first online?</strong></p>
+            <label><input type="radio" name="q3" value="a"> Website color</label><br>
+            <label><input type="radio" name="q3" value="b"> Author and date</label><br>
+            <label><input type="radio" name="q3" value="c"> Number of ads</label>
+
+            <p><strong>4. Which question helps evaluate social media content?</strong></p>
+            <label><input type="radio" name="q4" value="a"> Is it trending?</label><br>
+            <label><input type="radio" name="q4" value="b"> Who created it and why?</label><br>
+            <label><input type="radio" name="q4" value="c"> Is it entertaining?</label>
+
+            <button type="button" onclick="checkAnswers()">Submit Quiz</button>
+            <p id="result"></p>
+
+        </form>
+    </section>
+
 </main>
 
 <footer>
     Media and Information Literacy • Lesson 5 • Student Version
 </footer>
+
+<script>
+    function checkAnswers() {
+        let score = 0;
+
+        const answers = {
+            q1: "b",
+            q2: "a",
+            q3: "b",
+            q4: "b"
+        };
+
+        for (let q in answers) {
+            const selected = document.querySelector(`input[name="${q}"]:checked`);
+            if (selected && selected.value === answers[q]) {
+                score++;
+            }
+        }
+
+        const result = document.getElementById("result");
+        result.textContent = `You scored ${score} out of 4.`;
+
+        if (score === 4) {
+            result.textContent += " 🎉 Excellent work!";
+        } else if (score >= 2) {
+            result.textContent += " 👍 Good job! Review the lesson to improve.";
+        } else {
+            result.textContent += " 📘 Keep studying! You can do better.";
+        }
+    }
+</script>
 
 </body>
 </html>
